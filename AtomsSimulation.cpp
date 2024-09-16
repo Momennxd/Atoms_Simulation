@@ -98,8 +98,6 @@ void AtomsSimulation::_SpawnAtom()
 
 
 	//TEMPORARY FOR TEST
-
-
 	Vector2f velocity = Vector2f(atoms_speed, atoms_speed);
 
 	Atom atom = Atom(velocity, atom_radias, pos);
@@ -121,33 +119,37 @@ void AtomsSimulation::_SpawnAtoms()
 
 Vector2f AtomsSimulation::_GetRndSpwanPos() const
 {
-	/* This variable stores a random number that represents the spawn side 1-right, 2-down, 3-left, 4-up */
-	short SpawnSide = Glob::GetRandomNumber(1, 4);
+	///* This variable stores a random number that represents the spawn side 1-right, 2-down, 3-left, 4-up */
+	//short SpawnSide = Glob::GetRandomNumber(1, 4);
 
-	switch (SpawnSide)
-	{
-		case 1: // Right
-		{
-			return Vector2f(this->m_Window->getSize().x, Glob::GetRandomNumber(0, this->m_Window->getSize().y));
-		}
-		case 2: // Bottom
-		{
-			return Vector2f(Glob::GetRandomNumber(0, this->m_Window->getSize().x), this->m_Window->getSize().y);
-		}
-		case 3: // Left
-		{
-			return Vector2f(0, Glob::GetRandomNumber(0, this->m_Window->getSize().y));
-		}
-		case 4: // Top
-		{
-			return Vector2f(Glob::GetRandomNumber(0, this->m_Window->getSize().x), 0);
-		}
-		default:
-		{
-			// Handle default case properly. Return a valid position to avoid undefined behavior.
-			return Vector2f(0, 0); // Or any default value
-		}
-	}
+	//switch (SpawnSide)
+	//{
+	//	case 1: // Right
+	//	{
+	//		return Vector2f(this->m_Window->getSize().x, Glob::GetRandomNumber(0, this->m_Window->getSize().y));
+	//	}
+	//	case 2: // Bottom
+	//	{
+	//		return Vector2f(Glob::GetRandomNumber(0, this->m_Window->getSize().x), this->m_Window->getSize().y);
+	//	}
+	//	case 3: // Left
+	//	{
+	//		return Vector2f(0, Glob::GetRandomNumber(0, this->m_Window->getSize().y));
+	//	}
+	//	case 4: // Top
+	//	{
+	//		return Vector2f(Glob::GetRandomNumber(0, this->m_Window->getSize().x), 0);
+	//	}
+	//	default:
+	//	{
+	//		// Handle default case properly. Return a valid position to avoid undefined behavior.
+	//		return Vector2f(0, 0); // Or any default value
+	//	}
+	//}
+
+
+	return Vector2f(Glob::GetRandomNumber(1, this->m_Window->getSize().x - 1),
+		Glob::GetRandomNumber(1, this->m_Window->getSize().y - 1));
 }
 
 

@@ -11,22 +11,22 @@
 	/// <summary>
 	/// Represents the number of atoms that spawn each second.
 	/// </summary>
-	static int atoms_num_persec = stoi(SettingsMap[ATOMS_SPAWING_NUMBERS_PERSEC_NAME]);
+	static double atoms_num_persec = stod(SettingsMap[ATOMS_SPAWING_NUMBERS_PERSEC_NAME]);
 	
 
 
 
-	static int atoms_speed = stoi(SettingsMap[ATOMS_SPEED_NAME]);
+	static double atoms_speed = stod(SettingsMap[ATOMS_SPEED_NAME]);
 
 
 
 	/// <summary>
 	/// Represents the max number of atoms in the current scene.
 	/// </summary>
-	static int atoms_max = stoi(SettingsMap[MAX_NUMBER_ATOMS_NAME]);
+	static double atoms_max = stod(SettingsMap[MAX_NUMBER_ATOMS_NAME]);
 
 
-	static int atom_radias = stoi(SettingsMap[ATOM_RADIAS]);
+	static double atom_radias = stod(SettingsMap[ATOM_RADIAS]);
 
 
 
