@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d29f597c-18e5-4e8f-a0e5-2da529a0fa49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\headers">
+      <UniqueIdentifier>{711c0ec9-c090-44e0-b975-476774b057bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\source">
+      <UniqueIdentifier>{5b625386-a4e2-4511-bc7e-33ce4cea4cbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="consts">
+      <UniqueIdentifier>{edcca3b9-da46-4552-b514-8c55c2be3e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{63b4e147-24d8-45ff-bd8e-2235aeff66a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{117c5d19-c14f-4bba-96f5-af99279aba3a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AtomsSimulation.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Atom.cpp">
+      <Filter>src\source</Filter>
+    </ClCompile>
+    <ClCompile Include="main_includes.h">
+      <Filter>src\core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FileSystem.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+    <ClInclude Include="SimSettings.h">
+      <Filter>consts</Filter>
+    </ClInclude>
+    <ClInclude Include="AtomsSimulation.h">
+      <Filter>src\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Atom.h">
+      <Filter>src\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="core.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="Glob.h">
+      <Filter>libs</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
