@@ -204,8 +204,15 @@ void AtomsSimulation::_Render()
 	this->m_Window->clear();
 
 	_RenderAtoms();
+	_PrintLogs();
 
 	this->m_Window->display();
+}
+
+void AtomsSimulation::_PrintLogs()
+{
+	cout << "Atoms Size = " << this->m_atoms.size() << "\n";
+
 }
 
 

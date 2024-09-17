@@ -6,7 +6,7 @@
 using namespace sf;
 using namespace std;
 /*
-class that acts like the game engine
+class that acts like the engine
 */
 class AtomsSimulation
 {
@@ -72,6 +72,7 @@ private:
 	void _RenderAtoms();
 	void _Render();
 
+	void _PrintLogs();
 
 public:
 
