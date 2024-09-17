@@ -66,7 +66,7 @@ public:
 	/// </summary>
 	/// <param name="atom"></param>
 	/// <returns></returns>
-	void Collide(Atom& atom);
+	bool Collide(Atom& atom);
 
 
 

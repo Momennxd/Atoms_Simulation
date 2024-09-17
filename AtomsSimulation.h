@@ -57,6 +57,12 @@ private:
 
 	void _MoveAtoms();
 
+	/// <summary>
+	/// Generates a random velocity based on speed.
+	/// </summary>
+	/// <param name="speed"></param>
+	/// <returns></returns>
+	Vector2f GetRndDirections(double speed);
 
 
 	void _Update();

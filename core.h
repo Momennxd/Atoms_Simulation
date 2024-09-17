@@ -2,7 +2,7 @@
 #define RANDOM std::srand(static_cast<unsigned>(time(NULL)));
 
 
-#define CONFIG_FILEPATH "x64\\Debug\\config.txt"
+#define CONFIG_FILEPATH "config.txt"
 
 
 #define TEXTFILE_ROW_SEPERATOR ','

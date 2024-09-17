@@ -1,0 +1,6 @@
+spwaning_atoms_number_persec:5,
+atoms_speed:2,
+atoms_max:30,
+atom_radias:10
+
+

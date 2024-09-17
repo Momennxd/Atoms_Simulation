@@ -70,7 +70,7 @@ void Atom::move()
 	this->m_shape.move(m_velocity);
 }
 
-void Atom::Collide(Atom& atom)
+bool Atom::Collide(Atom& atom)
 {
     if (this->m_shape.getGlobalBounds().intersects(atom.m_shape.getGlobalBounds()))
     {
@@ -102,7 +102,11 @@ void Atom::Collide(Atom& atom)
         {
             this->m_shape.setFillColor(Color::Green);
         }
+
+        return true;
     }
+
+    return false;
 }
 
 Atom::Atom()
