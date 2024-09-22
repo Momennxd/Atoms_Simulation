@@ -126,8 +126,10 @@ void AtomsSimulation::_SpawnAtoms()
 Vector2f AtomsSimulation::_GetRndSpwanPos() const
 {
 
-	Vector2f pos = Vector2f(Glob::GetRandomNumber(1, this->m_Window->getSize().x - 1),
-			Glob::GetRandomNumber(1, this->m_Window->getSize().y - 1));
+	Vector2f pos = Vector2f(
+		Glob::GetRandomNumber(atom_radias * 2, this->m_Window->getSize().x - atom_radias * 2),
+		Glob::GetRandomNumber(atom_radias * 2, this->m_Window->getSize().y - atom_radias * 2)
+	);
 		
 
 	return pos;
