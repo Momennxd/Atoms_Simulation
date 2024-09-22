@@ -16,12 +16,10 @@
 //simulation config settings 
 
 
-#define ATOMS_SPAWING_NUMBERS_PERSEC_NAME "spwaning_atoms_number_persec"
-
 #define ATOMS_SPEED_NAME "atoms_speed"
 
 #define MAX_NUMBER_ATOMS_NAME "atoms_max"
 
 #define ATOM_RADIAS "atom_radias"
 
-#define MAX_HANDLED_ATOMS 100
+#define MAX_HANDLED_ATOMS 1000

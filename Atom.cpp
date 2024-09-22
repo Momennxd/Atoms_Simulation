@@ -72,35 +72,61 @@ void Atom::move()
 
 bool Atom::Collide(Atom& atom)
 {
-    if (this->m_shape.getGlobalBounds().intersects(atom.m_shape.getGlobalBounds()))
+    // Calculate the distance between the centers of the two atoms
+    Vector2f delta = this->m_shape.getPosition() - atom.m_shape.getPosition();
+    float distanceSquared = delta.x * delta.x + delta.y * delta.y;
+
+    // Get the radii of both atoms
+    float radiusSum = this->m_shape.getRadius() + atom.m_shape.getRadius();
+    float radiusSumSquared = radiusSum * radiusSum;
+
+    // Check if distance between centers is less than the sum of their radii
+    if (distanceSquared < radiusSumSquared)
     {
-        sf::FloatRect rect1 = this->m_shape.getGlobalBounds();
-        sf::FloatRect rect2 = atom.m_shape.getGlobalBounds();
+        // Collision detected
 
-        // Calculate overlap
-        float overlapX = std::min(rect1.left + rect1.width - rect2.left, rect2.left + rect2.width - rect1.left);
-        float overlapY = std::min(rect1.top + rect1.height - rect2.top, rect2.top + rect2.height - rect1.top);
-
-        // Reverse velocity based on which axis the collision happened on
-        if (overlapX < overlapY)
+        // Calculate the actual distance between the atoms
+        float distance = std::sqrt(distanceSquared);
+        if (distance == 0.0f)
         {
-            // X-axis collision: reverse the X component of velocity
-            this->velocity = Vector2f(-this->velocity.x, this->velocity.y);
-        }
-        else
-        {
-            // Y-axis collision: reverse the Y component of velocity
-            this->velocity = Vector2f(this->velocity.x, -this->velocity.y);
+            distance = 0.1f;  // Prevent division by zero if atoms are at the same position
         }
 
-        // Change color to indicate a collision
-        if (this->shape.getFillColor() == Color::Green)
+        // Calculate collision normal (normalized direction between atoms)
+        Vector2f collisionNormal = delta / distance;
+
+        // Reflect the velocity based on the collision normal
+        Vector2f relativeVelocity = this->velocity - atom.velocity;
+        float velocityAlongNormal = relativeVelocity.x * collisionNormal.x + relativeVelocity.y * collisionNormal.y;
+
+        // If the objects are moving apart, we don't process the collision
+        if (velocityAlongNormal > 0)
         {
-            this->m_shape.setFillColor(Color::Red);
+            return false;
         }
-        else
-        {
-            this->m_shape.setFillColor(Color::Green);
+
+        // Coefficient of restitution (bounciness factor)
+        float restitution = 1.0f;  // Perfect elastic collision
+
+        // Impulse scalar (assuming equal mass for both atoms)
+        float impulse = -(1 + restitution) * velocityAlongNormal / 2.0f;
+
+        // Apply impulse to each atom's velocity
+        Vector2f impulseVector = impulse * collisionNormal;
+        this->velocity += impulseVector;
+        atom.velocity -= impulseVector;
+
+        // Resolve overlap (optional for smooth visual)
+        float overlap = 0.5f * (radiusSum - distance);  // Half the overlap
+        this->m_shape.setPosition(this->m_shape.getPosition() + collisionNormal * overlap);
+        atom.m_shape.setPosition(atom.m_shape.getPosition() - collisionNormal * overlap);
+
+        // Change color to indicate collision
+        if (this->m_shape.getFillColor() == sf::Color::Green) {
+            this->m_shape.setFillColor(sf::Color::Red);
+        }
+        else {
+            this->m_shape.setFillColor(sf::Color::Green);
         }
 
         return true;
@@ -108,6 +134,7 @@ bool Atom::Collide(Atom& atom)
 
     return false;
 }
+
 
 Atom::Atom()
 {

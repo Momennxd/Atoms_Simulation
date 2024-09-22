@@ -7,13 +7,6 @@
 	static unordered_map<string, string> SettingsMap = FileSystem::GetConfigSettingsMap(CONFIG_FILEPATH);
 
 
-	/// <summary>
-	/// Represents the number of atoms that spawn each second.
-	/// </summary>
-	static double atoms_num_persec = stod(SettingsMap[ATOMS_SPAWING_NUMBERS_PERSEC_NAME]);
-	
-
-
 
 	static double atoms_speed = stod(SettingsMap[ATOMS_SPEED_NAME]);
 
