@@ -49,6 +49,7 @@ private:
 	/// <returns></returns>
 	Vector2f _GetRndSpwanPos() const;
 
+	bool _DoesPosIntersects(FloatRect bounds) const;
 
 	/// <summary>
 	/// Handles objects and window collision.

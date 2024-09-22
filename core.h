@@ -23,3 +23,5 @@
 #define MAX_NUMBER_ATOMS_NAME "atoms_max"
 
 #define ATOM_RADIAS "atom_radias"
+
+#define MAX_HANDLED_ATOMS 100

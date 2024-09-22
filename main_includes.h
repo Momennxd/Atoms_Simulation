@@ -13,9 +13,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/window.hpp>
 
-
+#include <math.h>
 
 #include <random> // random is needed to generate random numbers for the dice.
 #include <cstdlib>
 #include <ctime>
-
+#include <unordered_set>

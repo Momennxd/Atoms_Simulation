@@ -27,6 +27,8 @@ void AtomsSimulation::_InitVariables()
 {
 	this->m_Window = nullptr;
 	this->m_atoms = vector<Atom>();
+	///this->m_atoms_pos = unordered_set<string>();
+
 	
 }
 
@@ -83,7 +85,7 @@ void AtomsSimulation::_WindowCollide(Atom& atom)
 		atom.SetVelocity(Vector2f(atom.velocity.x * -1, atom.velocity.y));
 	}
 		
-	if (atom.position.y >= m_Window->getSize().y || (atom.position.y + atom.radias * 2 <= 0))
+	if (atom.position.y + atom.radias * 2 >= m_Window->getSize().y || atom.position.y <= 0)
 	{
 		atom.SetVelocity(Vector2f(atom.velocity.x, atom.velocity.y * -1));
 	}
@@ -97,8 +99,14 @@ void AtomsSimulation::_SpawnAtom()
 	Vector2f pos = _GetRndSpwanPos();
 	Vector2f velocity = GetRndDirections(atoms_speed);
 
-
+	
 	Atom atom = Atom(velocity, atom_radias, pos);
+
+	while (_DoesPosIntersects(atom.shape.getGlobalBounds()))
+	{
+		atom.position = _GetRndSpwanPos();
+
+	}
 
 	this->m_atoms.push_back(atom);
 
@@ -117,8 +125,27 @@ void AtomsSimulation::_SpawnAtoms()
 
 Vector2f AtomsSimulation::_GetRndSpwanPos() const
 {
-	return Vector2f(Glob::GetRandomNumber(1, this->m_Window->getSize().x - 1),
-		Glob::GetRandomNumber(1, this->m_Window->getSize().y - 1));
+
+	Vector2f pos = Vector2f(Glob::GetRandomNumber(1, this->m_Window->getSize().x - 1),
+			Glob::GetRandomNumber(1, this->m_Window->getSize().y - 1));
+		
+
+	return pos;
+}
+
+bool AtomsSimulation::_DoesPosIntersects(FloatRect bounds) const
+{
+
+	for (int i = 0; i < this->m_atoms.size(); ++i)
+	{
+		if (m_atoms[i].shape.getGlobalBounds().intersects(bounds))
+		{
+			return true;
+		}
+	}
+
+
+	return false;
 }
 
 
@@ -223,10 +250,7 @@ void AtomsSimulation::Run()
 		
 		_Update();
 
-		//LOGS
-
-		//TODO---->HANDLING LOGS
-
+	
 
 		_Render();
 

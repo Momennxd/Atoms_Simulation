@@ -4,7 +4,6 @@
 
 
 
-
 	static unordered_map<string, string> SettingsMap = FileSystem::GetConfigSettingsMap(CONFIG_FILEPATH);
 
 
@@ -23,7 +22,7 @@
 	/// <summary>
 	/// Represents the max number of atoms in the current scene.
 	/// </summary>
-	static double atoms_max = stod(SettingsMap[MAX_NUMBER_ATOMS_NAME]);
+	static int atoms_max =  std::min(stoi(SettingsMap[MAX_NUMBER_ATOMS_NAME]), MAX_HANDLED_ATOMS);
 
 
 	static double atom_radias = stod(SettingsMap[ATOM_RADIAS]);
